@@ -1,4 +1,4 @@
 package com.example.beanterestful.service;
 
-public class CustomerService {
+public interface  CustomerService {
 }
