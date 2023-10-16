@@ -20,8 +20,9 @@ import java.util.Date;
 public class ProductImageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String product_id;
-    private String image_id;
+    private String product_image_id;
+
+
     private String image_url;
 
 }

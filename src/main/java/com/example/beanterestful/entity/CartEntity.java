@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -14,6 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "cart" )
 @Builder
 @Entity
 
@@ -26,7 +26,7 @@ public class CartEntity {
     @JoinColumn(name = "customer_id")
     private CustomerEntity customerEntity;
 
-    @OneToMany(mappedBy = "cartEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItemEntity> cartItems = new ArrayList<CartItemEntity>();
 }
 

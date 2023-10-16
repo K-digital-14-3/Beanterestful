@@ -5,25 +5,27 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.ArrayList;
-import java.util.List;
-
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+
 @Entity
+@Table(name = "cartItem")
+
 public class CartItemEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String cart_id;
+
     private int quantity;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @MapsId
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id")
-    private CartEntity cartentity;
+    private CartEntity cartEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private ProductEntity productEntity;
+    @OneToOne(mappedBy = "cartItemEntity")
+    private ProductEntity productentity;
+
   }
