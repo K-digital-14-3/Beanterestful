@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class CartItemEntity {
 
     @Id
-    private String cart_id;
+    private Long cart_id;
 
     private int quantity;
 

@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "cart")
+@Table(name = "cartegory")
 
 @Builder
 @Entity
@@ -21,7 +21,7 @@ import java.util.List;
 public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String category_id;
+    private Long category_id;
 
     private String category_name;
 

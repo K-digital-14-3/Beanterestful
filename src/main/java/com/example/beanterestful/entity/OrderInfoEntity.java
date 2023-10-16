@@ -1,9 +1,20 @@
 package com.example.beanterestful.entity;
 
-
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Entity
+@Table(name = "ordered_info")
 
 public class OrderInfoEntity {
     @Id
@@ -24,7 +35,7 @@ public class OrderInfoEntity {
     private String delivery_request;
     private int total_price;
 
-    @OneToOne(mappedBy = "board")
-    private int order_no;
+    @OneToOne(mappedBy = "OrderInfoEntity", cascade = CascadeType.ALL)
+    private OrderedEntity orderedEntity;
 
 }

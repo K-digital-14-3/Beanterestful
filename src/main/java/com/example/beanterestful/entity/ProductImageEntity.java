@@ -1,9 +1,6 @@
 package com.example.beanterestful.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,9 +17,12 @@ import java.util.Date;
 public class ProductImageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String product_image_id;
+    private Long product_image_id;
 
 
     private String image_url;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private ProductEntity productEntity;
 }

@@ -1,17 +1,31 @@
 package com.example.beanterestful.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Entity
+@Table(name = "ordered")
 
 public class OrderedEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int order_no;
+    private Long order_no;
     private int quantity;
 
+    @OneToOne(mappedBy = "ordered", cascade = CascadeType.ALL)
+    private ProductEntity productEntity;
+
     @OneToOne
-    private ProductEntity product;
+    @JoinColumn
+    private OrderInfoEntity orderInfoEntity;
+    // getters and setters
+
 }
