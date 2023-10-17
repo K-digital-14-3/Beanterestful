@@ -25,8 +25,7 @@ public class CategoryEntity {
 
     private String category_name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductEntity> cartItems = new ArrayList<ProductEntity>();
-
+    @OneToMany(mappedBy = "categoryEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductEntity> productEntityList = new ArrayList<ProductEntity>();
 
 }

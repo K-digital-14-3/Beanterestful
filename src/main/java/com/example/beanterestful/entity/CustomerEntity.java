@@ -30,10 +30,10 @@ public class CustomerEntity {
     private int cell_number;
     private String address_detail;
 
-    @OneToOne(mappedBy = "customer")
+    @OneToOne(mappedBy = "customerEntity")
     private CartEntity cartEntity;
 
-    @OneToMany(mappedBy = "customer",  cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "customerEntity",  cascade = CascadeType.ALL, orphanRemoval = true)
    private List<OrderInfoEntity> orderInfoEntityList = new ArrayList<OrderInfoEntity>();
 
 

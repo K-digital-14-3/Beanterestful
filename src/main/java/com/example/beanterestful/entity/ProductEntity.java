@@ -32,19 +32,19 @@ public class ProductEntity {
     private String product_detail;
     private String number_of_review;
     private String product_rating;
-    private String order_no;
+
 
     @OneToMany(mappedBy = "productEntity",  cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductImageEntity> productImageEntityList = new ArrayList<ProductImageEntity>();
 
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity categoryEntity;
 
     @OneToOne
     @JoinColumn(name = "cart_id")
-    private CartEntity cartEntity;
+    private CartItemEntity cartItemEntity;
 
     @OneToOne
     @JoinColumn(name = "order_no")
