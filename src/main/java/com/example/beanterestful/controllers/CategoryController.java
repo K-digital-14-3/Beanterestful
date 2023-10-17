@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -18,12 +18,14 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/categories/{category_id}")
     public ResponseEntity<CategoryDto> categoryId(@PathVariable Long category_id) {
         return ResponseEntity.ok(categoryService.getCategoryById(category_id));
     }
 
-    @PostMapping("/create")
+
+    //아직 사용x
+    @PostMapping("/categories/create")
     public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) {
         CategoryDto createdCategoryDto = categoryService.createCategory(categoryDto);
 
@@ -34,7 +36,7 @@ public class CategoryController {
         }
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/categories/update/{category_id}")
     public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long category_id, @RequestBody CategoryDto categoryDto) {
         try {
             CategoryDto updatedCategoryDto = categoryService.updateCategory(category_id, categoryDto);

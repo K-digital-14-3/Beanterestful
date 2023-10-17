@@ -28,6 +28,7 @@ public class CategoryService {
         }
     }
 
+    //아직 사용 x
     public CategoryDto createCategory(CategoryDto categoryDto) {
 
         CategoryEntity newCategory = new CategoryEntity();

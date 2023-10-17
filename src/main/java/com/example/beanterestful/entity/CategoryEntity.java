@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "cartegory")
+@Table(name = "category")
 
 @Builder
 @Entity
