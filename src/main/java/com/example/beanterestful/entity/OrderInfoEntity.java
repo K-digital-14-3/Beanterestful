@@ -19,11 +19,7 @@ import java.util.Date;
 public class OrderInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    public CustomerEntity customerEntity;
-
-    @Id	@Column(name = "order_no")
+    @Column(name = "order_no")
     private int order_no;
 
     private String email;
@@ -35,7 +31,10 @@ public class OrderInfoEntity {
     private String delivery_request;
     private int total_price;
 
-    @OneToOne(mappedBy = "OrderInfoEntity", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "orderInfoEntity", cascade = CascadeType.ALL)
     private OrderedEntity orderedEntity;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    public CustomerEntity customerEntity;
 }

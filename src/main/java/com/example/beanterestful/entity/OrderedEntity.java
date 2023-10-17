@@ -20,7 +20,7 @@ public class OrderedEntity {
     private Long order_no;
     private int quantity;
 
-    @OneToOne(mappedBy = "ordered", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "orderedEntity", cascade = CascadeType.ALL)
     private ProductEntity productEntity;
 
     @OneToOne
