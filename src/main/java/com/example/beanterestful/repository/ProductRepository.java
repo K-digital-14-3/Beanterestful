@@ -1,4 +1,4 @@
 package com.example.beanterestful.repository;
 
-public class ProductRepository {
+public interface  ProductRepository {
 }
