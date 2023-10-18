@@ -1,4 +1,4 @@
 package com.example.beanterestful.service;
 
-public class CartService {
+public interface  CartService {
 }
