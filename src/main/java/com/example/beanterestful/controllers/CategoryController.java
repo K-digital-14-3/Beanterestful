@@ -1,26 +1,44 @@
 package com.example.beanterestful.controllers;
 
 import com.example.beanterestful.dto.CategoryDto;
+import com.example.beanterestful.dto.ProductDto;
+import com.example.beanterestful.entity.ProductEntity;
 import com.example.beanterestful.service.CategoryService;
+import com.example.beanterestful.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class CategoryController {
 
     private final CategoryService categoryService;
+    private final ProductService productService;
 
     @Autowired
-    public CategoryController(CategoryService categoryService) {
+    public CategoryController(CategoryService categoryService, ProductService productService) {
         this.categoryService = categoryService;
+        this.productService = productService;
     }
 
     @GetMapping("/categories/{category_id}")
     public ResponseEntity<CategoryDto> categoryId(@PathVariable Long category_id) {
         return ResponseEntity.ok(categoryService.getCategoryById(category_id));
+    }
+
+    @GetMapping("/categories/{category_id}/products")
+    public ResponseEntity<List<ProductDto>> getProductsByCategoryId(@PathVariable("category_id") Long categoryId) {
+        List<ProductDto> productDtos = productService.getProductsByCategoryId(categoryId);
+
+        if (productDtos == null || productDtos.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(productDtos, HttpStatus.OK);
     }
 
 

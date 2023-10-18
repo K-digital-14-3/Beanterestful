@@ -1,19 +1,27 @@
 package com.example.beanterestful.service;
 
 import com.example.beanterestful.dto.CategoryDto;
+import com.example.beanterestful.dto.ProductDto;
 import com.example.beanterestful.entity.CategoryEntity;
+import com.example.beanterestful.entity.ProductEntity;
 import com.example.beanterestful.repository.CategoryRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
+    private final ProductService productService;
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository, ProductService productService) {
         this.categoryRepository = categoryRepository;
+        this.productService = productService;
     }
 
     public CategoryDto getCategoryById(Long id) {
@@ -27,6 +35,13 @@ public class CategoryService {
             return null;
         }
     }
+    public List<ProductDto> getProductsByCategoryId(Long categoryId) {
+        // productService를 사용하여 카테고리 ID에 해당하는 상품을 가져옵니다.
+        return productService.getProductsByCategoryId(categoryId);
+    }
+
+
+
 
     //아직 사용 x
     public CategoryDto createCategory(CategoryDto categoryDto) {
