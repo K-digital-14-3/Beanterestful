@@ -21,7 +21,7 @@ public class OrderedEntity {
     private int quantity;
 
     @OneToOne(mappedBy = "orderedEntity", cascade = CascadeType.ALL)
-    private ProductEntity productEntity;
+    private CategoryEntity CategoryEntity;
 
     @OneToOne
     @JoinColumn

@@ -1,19 +1,21 @@
 package com.example.beanterestful.entity;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
 @Entity
-@Table(name = "cartItem")
+@Table(name = "cartCategory")
 
-public class CartItemEntity {
+public class CartCategoryEntity {
 
     @Id
     private Long cart_id;
@@ -25,7 +27,7 @@ public class CartItemEntity {
     @JoinColumn(name = "cart_id")
     private CartEntity cartEntity;
 
-    @OneToOne(mappedBy = "cartItemEntity")
-    private ProductEntity productentity;
+    @OneToOne(mappedBy = "cartCategoryEntity")
+    private CategoryEntity Categoryentity;
 
   }

@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "category")
+@Table(name = "Category")
 
 @Builder
 @Entity
@@ -21,11 +23,11 @@ import java.util.List;
 public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long category_id;
+    private Long Category_id;
 
-    private String category_name;
+    private String Category_name;
 
-    @OneToMany(mappedBy = "categoryEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductEntity> productEntityList = new ArrayList<ProductEntity>();
+    @OneToMany(mappedBy = "CategoryEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CategoryEntity> CategoryEntityList = new ArrayList<CategoryEntity>();
 
 }

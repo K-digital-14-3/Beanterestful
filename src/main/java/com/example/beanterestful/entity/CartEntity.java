@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +30,7 @@ public class CartEntity {
     private CustomerEntity customerEntity;
 
     @OneToMany(mappedBy = "cartEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartItemEntity> cartItems = new ArrayList<CartItemEntity>();
+    private List<CartCategoryEntity> cartCategory = new ArrayList<CartCategoryEntity>();
 }
 
 
