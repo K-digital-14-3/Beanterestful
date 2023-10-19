@@ -1,11 +1,10 @@
 package com.example.beanterestful.controllers;
 
 import com.example.beanterestful.dto.CategoryDto;
-import com.example.beanterestful.dto.ProductDto;
 import com.example.beanterestful.entity.ProductEntity;
 import com.example.beanterestful.service.CategoryService;
 import com.example.beanterestful.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,16 +13,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryService categoryService;
     private final ProductService productService;
 
-    @Autowired
+   /* @Autowired
     public CategoryController(CategoryService categoryService, ProductService productService) {
+
         this.categoryService = categoryService;
         this.productService = productService;
-    }
+    }*/
 
     @GetMapping("/categories/{category_id}")
     public ResponseEntity<CategoryDto> categoryId(@PathVariable Long category_id) {
@@ -31,14 +32,14 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/{category_id}/products")
-    public ResponseEntity<List<ProductDto>> getProductsByCategoryId(@PathVariable("category_id") Long categoryId) {
-        List<ProductDto> productDtos = productService.getProductsByCategoryId(categoryId);
+    public ResponseEntity<List<ProductEntity>> getProductsByCategoryId(@PathVariable Long category_id) {
+        List<ProductEntity> products = productService.getProductsByCategoryId(category_id);
 
-        if (productDtos == null || productDtos.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (products.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(products);
         }
-
-        return new ResponseEntity<>(productDtos, HttpStatus.OK);
     }
 
 
@@ -53,6 +54,8 @@ public class CategoryController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+
 
     @PutMapping("/categories/update/{category_id}")
     public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long category_id, @RequestBody CategoryDto categoryDto) {
